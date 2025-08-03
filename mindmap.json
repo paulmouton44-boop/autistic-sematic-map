@@ -1,0 +1,14 @@
+{
+  "core": "The Grand Hypothesis",
+  "nodes": [
+    {
+      "id": "env-no-make",
+      "title": "Environments didn't make us autistic",
+      "connections": ["heroic-past", "two-network-philosophy"]
+    },
+    {
+      "id": "heroic-past",
+      "title": "Heroic Origins of Neurodivergence"
+    }
+  ]
+}
