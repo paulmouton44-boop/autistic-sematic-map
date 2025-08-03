@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mind Map Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f0f4f8;
+    }
+    .node {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .tags {
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Mind Map Viewer</h1>
+  <div id="map"></div>
+
+  <script>
+    fetch('mindmap.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const container = document.getElementById('map');
+        data.nodes.forEach(node => {
+          const div = document.createElement('div');
+          div.className = 'node';
+          div.innerHTML = `<strong>${node.text}</strong>` +
+            (node.tags ? `<div class="tags">Tags: ${node.tags.join(', ')}</div>` : '');
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById('map').innerHTML = `<p style="color:red;">Error loading mindmap.json: ${error.message}</p>`;
+      });
+  </script>
+</body>
+</html>
